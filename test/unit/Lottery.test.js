@@ -51,7 +51,7 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
                   await lottery.performUpkeep([])
                   await expect(
                       lottery.enterLottery({ value: lotteryEntranceFee })
-                  ).to.be.revertedWith(loterry, "Lottery__NOTOPEN")
+                  ).to.be.revertedWith("Lottery__NOTOPEN")
               })
           })
       })
