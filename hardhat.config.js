@@ -20,11 +20,14 @@ module.exports = {
             blockConfirmations: 1,
         },
         mumbai: {
-            chainId: 8001,
+            chainId: 80001,
             blockConfirmations: 6,
             url: MUMBAI_RPC_URL,
             accounts: [PRIVATE_KEY],
         },
+    },
+    etherscan: {
+        apiKey: POLYSCAN_API_KEY,
     },
     gasReporter: {
         enable: false,
@@ -44,6 +47,6 @@ module.exports = {
     },
 
     mocha: {
-        timeout: 200000,
+        timeout: 500000,
     },
 }

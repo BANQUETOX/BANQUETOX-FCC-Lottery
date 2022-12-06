@@ -7,10 +7,10 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
-    let vrfCoordinatorV2Address, subscriptionId
-    const vrfCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock")
+    let vrfCoordinatorV2Address, subscriptionId, vrfCoordinatorV2Mock
 
-    if (developmentChains.includes(network.name)) {
+    if (chainId == 31337) {
+        vrfCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock")
         vrfCoordinatorV2Address = vrfCoordinatorV2Mock.address
         const transactionResponse = await vrfCoordinatorV2Mock.createSubscription()
         const transactionReceipt = await transactionResponse.wait(1)
@@ -40,7 +40,14 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
 
     if (!developmentChains.includes(network.name) && process.env.POLYSCAN_API_KEY) {
         log("Verifying...")
-        await verify(lottery.address, args)
+        await verify(lottery.address, [
+            vrfCoordinatorV2Address,
+            entranceFee,
+            gasLane,
+            subscriptionId,
+            callbackGasLimit,
+            interval,
+        ])
     }
     log("------------------------------")
 }
