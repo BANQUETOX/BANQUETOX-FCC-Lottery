@@ -6,3 +6,5 @@ coverage
 coverage.json
 gas-report.txt
 deployments
+deployments/localhost/Lottery.json
+deployments/localhost/VRFCoordinatorV2Mock.json

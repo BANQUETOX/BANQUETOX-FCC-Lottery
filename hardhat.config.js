@@ -13,9 +13,9 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY
 const POLYSCAN_API_KEY = process.env.POLYSCAN_API_KEY
 module.exports = {
-    defaultNetwork: "hardhat",
+    defaultNetwork: "localhost",
     networks: {
-        hardhat: {
+        localhost: {
             chainId: 31337,
             blockConfirmations: 1,
         },
